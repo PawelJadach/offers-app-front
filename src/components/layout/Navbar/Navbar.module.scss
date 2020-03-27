@@ -1,0 +1,67 @@
+@import '../../../styles/global.scss';
+@import '../../../styles/palette';
+
+.root {
+
+  ul {
+    display: flex;
+    justify-content: flex-end;
+    background-color: $navbar-bgc;
+
+    .hamburger {
+      display: none;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    li {
+      padding: 20px 30px;
+
+      a {
+        display: block;
+        color: $navbar-color;
+        text-transform: uppercase;
+        font-weight: bold;
+        transition: .2s;
+
+        &:hover{
+          color: $navbar-color-hover;
+        }
+      }
+    }
+
+    
+  }
+}
+
+
+
+@media (max-width: 500px) {
+  .root {
+    height: 56px;
+    overflow: hidden;
+    transition: .5s linear;
+
+    ul {
+      display: flex;
+      padding: 15px;
+      flex-direction: column;
+      overflow: hidden;
+
+      .hamburger {
+        display: flex;
+        margin-left: auto;
+      }
+      
+      
+    }
+
+    
+  }
+  
+}
+
+
+.root.show {
+  height: 100vh;
+}

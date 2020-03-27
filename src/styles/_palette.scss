@@ -1,9 +1,16 @@
 $color-dark: rgba(43, 45, 66, 1);
 $color-grey: rgba(141, 153, 174, 1);
-$color-white: rgba(237, 242, 244, 1);
+$color-light: rgba(237, 242, 244, 1);
 $color-red-primary: rgba(239, 35, 60, 1);
 $color-red-secondary: rgba(217, 4, 41, 1);
 
 
 // FONTS COLORS
 $font-color-dark: $color-dark;
+$font-color-light: $color-light;
+
+
+//NAVBAR
+$navbar-bgc: $color-dark;
+$navbar-color: $font-color-light;
+$navbar-color-hover: $color-red-secondary;
