@@ -6,8 +6,7 @@ import Hamburger from '../../common/Hamburger/Hamburger';
 class Navbar extends Component {
 
   state = {
-    menu: false,
-    checked: false,
+    menu: false
   };
 
   showMenu = () => {
@@ -16,24 +15,23 @@ class Navbar extends Component {
     }));
   };
 
-  checked = () => {
-    this.setState((prevState) => ({
-      checked: !prevState.checked,
+  handle = () => {
+    this.setState({
       menu: false,
-    }));
-  };
+    })
+  }
+
   
   render(){
     const navLinks = ['Home', 'Offers', 'Login', 'Logout'];
-    console.log(this.state.checked)
     return (
-      <nav className={this.state.menu ? styles.root + ' ' + styles.show : styles.root}>
+      <nav className={this.state.menu ? `${styles.root} ${styles.show}` : styles.root}>
         <ul>
           <div className={styles.hamburger} onClick={this.showMenu} >
-            <Hamburger checked={this.state.checked} click={this.checked}/>
+            <Hamburger checked={this.state.menu} />
           </div>
           {navLinks.map(link => {
-            return <li><a href="#" onClick={this.checked}>{link}</a></li>
+            return <li><a href="#" onClick={this.handle}>{link}</a></li>
           })}
         </ul>
       </nav>

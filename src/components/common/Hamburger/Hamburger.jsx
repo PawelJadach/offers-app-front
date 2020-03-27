@@ -1,10 +1,10 @@
 import React from 'react'
 import './Hamburger.module.scss';
 
-const Hamburger = ({ checked, click }) => {
+const Hamburger = ({ checked }) => {
   return (
     <div id='hamburger'>
-      <input onClick={click} type="checkbox" checked={checked}/>
+      <input type="checkbox" checked={checked}/>
       <span></span>
       <span></span>
       <span></span>
