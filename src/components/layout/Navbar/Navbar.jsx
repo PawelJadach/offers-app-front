@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styles from './Navbar.module.scss';
 import Hamburger from '../../common/Hamburger/Hamburger';
+import { Link } from 'react-router-dom';
 
 class Navbar extends Component {
 
@@ -23,7 +24,24 @@ class Navbar extends Component {
 
   
   render(){
-    const navLinks = ['Home', 'Offers', 'Login', 'Logout'];
+    const navLinks = [
+      {
+        name: 'Home',
+        link: '/',
+      },
+      {
+        name: 'Offers',
+        link: '/',
+      },
+      {
+        name: 'Login',
+        link: '/',
+      },
+      {
+        name: 'Logout',
+        link: '/',
+      },
+    ];
     return (
       <nav className={this.state.menu ? `${styles.root} ${styles.show}` : styles.root}>
         <ul>
@@ -31,7 +49,7 @@ class Navbar extends Component {
             <Hamburger checked={this.state.menu} />
           </div>
           {navLinks.map(link => {
-            return <li><a href="#" onClick={this.handle}>{link}</a></li>
+            return <li><Link to={link.link} onClick={this.handle}>{link.name}</Link></li>
           })}
         </ul>
       </nav>

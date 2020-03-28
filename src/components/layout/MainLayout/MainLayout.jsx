@@ -1,25 +1,24 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Navbar from '../Navbar/Navbar';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import ProductList from '../../views/ProductList/ProductList';
 import ErrorPage from '../../views/ErrorPage/ErrorPage';
 
-const MainLayout = ({ children }) => {
+const MainLayout = () => {
   return (
     <div>
-      <Navbar />
       <Router>
-        <Route path='/' exact component={ProductList} />
-        <Route component={ErrorPage} />
-        { children }
+        <Navbar />
+        <Switch>
+          <Route exact path='/' component={ProductList} />
+          <Route exact path='*'  component={ErrorPage} />
+        </Switch>
       </Router>
     </div>
   )
 }
 
-MainLayout.propTypes = {
-  children: PropTypes.array,
-};
+
 
 export default MainLayout;
