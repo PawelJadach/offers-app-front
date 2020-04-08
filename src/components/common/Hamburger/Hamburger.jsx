@@ -1,9 +1,9 @@
 import React from 'react'
-import './Hamburger.module.scss';
+import styles from './Hamburger.module.scss';
 
 const Hamburger = ({ checked }) => {
   return (
-    <div id='hamburger'>
+    <div id={styles.hamburger}>
       <input type="checkbox" checked={checked}/>
       <span></span>
       <span></span>

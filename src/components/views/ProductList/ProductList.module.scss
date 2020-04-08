@@ -1,7 +1,30 @@
+@import '../../../styles/palette';
+
 .root {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 100px;
+  margin-top: 50px;
+
+  div.button {
+    width: 100%;
+    text-align: center;
+
+    .btn {
+      margin: 50px auto;
+      padding: 20px 100px;
+      background-color: $color-red-primary;
+      border: none;
+      color: $font-color-light;
+      text-transform: uppercase;
+      font-weight: bold;
+      transition: .2s;
+  
+      &:hover {
+        background-color: $color-red-secondary;
+        padding: 20px 130px;
+      }
+    }
+  }
 }

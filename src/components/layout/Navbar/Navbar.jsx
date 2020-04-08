@@ -30,7 +30,7 @@ class Navbar extends Component {
         link: '/',
       },
       {
-        name: 'Offers',
+        name: 'My Offers',
         link: '/',
       },
       {
