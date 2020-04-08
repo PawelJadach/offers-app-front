@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import ProductList from '../../views/ProductList/ProductList';
 import ErrorPage from '../../views/ErrorPage/ErrorPage';
 import PostAdd from '../../views/PostAdd/PostAdd';
+import LoginPage from '../../views/LoginPage/LoginPage';
 
 const MainLayout = () => {
   return (
@@ -14,6 +15,7 @@ const MainLayout = () => {
         <Switch>
           <Route exact path='/' component={ProductList} />
           <Route exact path='/addOffer' component={PostAdd} />
+          <Route exact path='/login' component={LoginPage} />
           <Route exact path='*'  component={ErrorPage} />
         </Switch>
       </Router>

@@ -1,0 +1,55 @@
+@import '../../../styles/palette';
+
+.root {
+  margin: 200px auto;
+  max-width: 40vw;
+}
+
+$white: #fff;
+$google-blue: $color-red-primary;
+$button-active-blue: $color-red-secondary;
+
+.googleBtn {
+  margin: 0 auto;
+  width: 300px;
+  height: 60px;
+  background-color: $google-blue;
+  border-radius: 2px;
+  transition: .2s;
+  // box-shadow: 0 3px 4px 0 rgba(0,0,0,.25);
+  .googleIconWrapper {
+    position: absolute;
+    margin-top: 1px;
+    margin-left: 1px;
+    width: 60px;
+    height: 58px;
+    border-radius: 2px;
+    background-color: $white;
+  }
+  .googleIcon {
+    position: absolute;
+    margin-top: 15px;
+    margin-left: 15px;
+    width: 30px;
+    height: 30px;
+  }
+  .btnText {
+    float: right;
+    margin: 22px 30px 0 0;
+    color: $white;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.2px;
+    font-family: "Roboto";
+  }
+  &:hover {
+    cursor: pointer;
+    background: $button-active-blue;
+  }
+  &:hover .googleIcon {
+    border-color: $button-active-blue;
+  }
+}
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:500);

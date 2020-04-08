@@ -35,7 +35,7 @@ class Navbar extends Component {
       },
       {
         name: 'Login',
-        link: '/',
+        link: '/login',
       },
       {
         name: 'Logout',
