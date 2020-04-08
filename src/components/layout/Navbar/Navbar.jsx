@@ -46,10 +46,10 @@ class Navbar extends Component {
       <nav className={this.state.menu ? `${styles.root} ${styles.show}` : styles.root}>
         <ul>
           <div className={styles.hamburger} onClick={this.showMenu} >
-            <Hamburger checked={this.state.menu} />
+            <Hamburger checked={this.state.menu} click={this.showMenu}/>
           </div>
           {navLinks.map(link => {
-            return <li><Link to={link.link} onClick={this.handle}>{link.name}</Link></li>
+            return <li key={link.name}><Link to={link.link} onClick={this.handle}>{link.name}</Link></li>
           })}
         </ul>
       </nav>

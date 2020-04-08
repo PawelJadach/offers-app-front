@@ -1,31 +1,38 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './PostListItem.module.scss';
+import { Link } from 'react-router-dom';
 
-const PostListItem = ({ children }) => {
+const PostListItem = ({ id, title, price, img, creationDate }) => {
   return (
     <div className={styles.root}>
-      <div className={styles.img}>
-        <img src='https://magboss.pl/pubs/uploads/telefon-xiaomi-redmi-7a-2-16gb-czarny-nowy-global-version,abd86491701946fc9ba49c5f2f1146cf-nowt.jpg' />
-      </div>
-      <div className={styles.content}>
-        <div className={styles.text}>
-          <h3>123 456,00 zł</h3>
-          <p>Telefon apple Iphone</p>
-          <hr />
+      <Link to={`/offer/${id}`}>
+        <div className={styles.img}>
+          <img src={img} alt={title}/>
         </div>
-        
-        <div className={styles.buttons}>
-          <button><i class="fas fa-cart-arrow-down"></i></button>
-          <button><i class="fas fa-star"></i></button>
+        <div className={styles.content}>
+          <div className={styles.text}>
+            <h3>{price}$</h3>
+            <p>{title}</p>
+            <hr />
+          </div>
+          
+          <div className={styles.buttons}>
+            <button><i className="fas fa-cart-arrow-down"></i></button>
+            <button><i className="fas fa-star"></i></button>
+          </div>
         </div>
-      </div>
+      </Link>
     </div>
   )
 }
 
 PostListItem.propTypes = {
-  children: PropTypes.array,
+  id: PropTypes.number,
+  title: PropTypes.string,
+  price: PropTypes.number,
+  img: PropTypes.string,
+  creationDate: PropTypes.string,
 };
 
 export default PostListItem;

@@ -29,7 +29,8 @@ class PostAdd extends React.Component {
       case 'content':
         this.checkContent(e.target.value);
       break;
-
+      default: 
+      break;
     }
   }
 
@@ -64,9 +65,7 @@ class PostAdd extends React.Component {
   }
 
   checkContent = (value = this.state.content) => {
-    const { content } = this.state;
     const regExp = /^[a-zA-Z0-9-]+$/g;
-    const regExpChars = /[a-zA-Z]{5,}/;
 
     if(value.length < 30 || value.length > 1000) {
       this.setState({
@@ -125,7 +124,7 @@ class PostAdd extends React.Component {
            <div className={styles.input}>
             <input autocomplete="off" type="text" id='img' className={imgError ? styles.danger : null} name='img' placeholder='Wprowadź link do zdjęcia ...' value={img} onChange={this.handleChange} required/>
               <label htmlFor="img">Zdjęcie</label>
-              { img && imgError === '' ? <div className={styles.img}><img onError={this.badImg} src={img}/></div> : null}
+              { img && imgError === '' ? <div className={styles.img}><img onError={this.badImg} src={img} alt='Preview'/></div> : null}
               {imgError !== '' ? <div className={styles.error}>{imgError}</div> : null}
            </div>
            <div className={styles.input}>

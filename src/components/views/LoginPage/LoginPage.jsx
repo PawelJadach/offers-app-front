@@ -14,12 +14,7 @@ class LoginPage extends React.Component {
   render() {
     return (
       <div className={styles.root}>
-        <div class={styles.googleBtn} onClick={this.handleClick}>
-          <div class={styles.googleIconWrapper}>
-            <img class={styles.googleIcon} src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"/>
-          </div>
-          <p class={styles.btnText}><b>Sign in with google</b></p>
-        </div>
+        <button>Sign in with google</button>
       </div>
     )
   }
