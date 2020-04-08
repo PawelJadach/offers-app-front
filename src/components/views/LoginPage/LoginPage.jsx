@@ -14,7 +14,7 @@ class LoginPage extends React.Component {
   render() {
     return (
       <div className={styles.root}>
-        <button>Sign in with google</button>
+        <button><i class="fab fa-google"></i>Sign in with google</button>
       </div>
     )
   }

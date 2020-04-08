@@ -1,6 +1,6 @@
 const initState = {
   user: {
-    name: 'janek'
+    email: 'janek@janek.pl'
   },
   error: '',
 }
