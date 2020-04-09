@@ -144,7 +144,7 @@ class OfferEdit extends React.Component {
 //   children: PropTypes.array,
 // };
 const mapStateToProps = (state, props) => ({
-  offer: state.offer.offers[state.offer.offers.findIndex(offer => props.match.params.id = offer.id)],
+  offer: state.offer.offers[state.offer.offers.findIndex(offer => Number(props.match.params.id) === offer.id)],
 })
 
 const mapDispatchToProps = {

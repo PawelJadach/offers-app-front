@@ -13,7 +13,7 @@ const PostListItem = ({ id, title, price, img, creationDate, authorEmail, email 
         </div>
         <div className={styles.content}>
           <div className={styles.text}>
-            <h3>{price}$</h3>
+            <h3>{price} zł</h3>
             <p>{title}</p>
             <hr />
           </div>

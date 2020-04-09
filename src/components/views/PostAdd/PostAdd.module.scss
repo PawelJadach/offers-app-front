@@ -1,8 +1,35 @@
 @import '../../../styles/palette';
 
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
 .root {
-  margin: 200px auto;
+  margin: 100px auto;
   max-width: 40vw;
+
+  .error {
+    margin-top: 10px;
+    color: $color-red-primary;
+    font-size: 15px;
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+  }
+
+  .success {
+    color: white;
+    background-color: green;
+    padding: 15px 30px;
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 40px;
+  }
 
 
   form {

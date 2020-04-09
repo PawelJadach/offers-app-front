@@ -1,8 +1,9 @@
 const initState = {
   user: {
-    email: 'janek@janek.pl'
+    email: 'pawel@wp.pl'
   },
   error: '',
+  isLoading: false,
 }
 
 const authReducer = (state = initState, action) => {

@@ -14,14 +14,19 @@
 
     .img {
       width: 200px;
+      height: 230px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       
       
       img {
+
         width: 100%;
       }
     }
     .content {
-      height: 100%;
+      height: 30%;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
