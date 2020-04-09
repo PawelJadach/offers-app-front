@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import styles from './Navbar.module.scss';
 import Hamburger from '../../common/Hamburger/Hamburger';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux'
 
 class Navbar extends Component {
 
@@ -24,33 +25,43 @@ class Navbar extends Component {
 
   
   render(){
-    const navLinks = [
+    const navLinksLogged = [
       {
         name: 'Home',
         link: '/',
       },
       {
         name: 'My Offers',
-        link: '/',
-      },
-      {
-        name: 'Login',
-        link: '/login',
+        link: '/my-offers',
       },
       {
         name: 'Logout',
         link: '/',
       },
     ];
+
+    const navLinksNotLogged = [
+      {
+        name: 'Home',
+        link: '/',
+      },
+      {
+        name: 'Login',
+        link: '/login',
+      },
+    ];
+
+    
     return (
       <nav className={this.state.menu ? `${styles.root} ${styles.show}` : styles.root}>
         <ul>
           <div className={styles.hamburger} onClick={this.showMenu} >
             <Hamburger checked={this.state.menu} click={this.showMenu}/>
           </div>
-          {navLinks.map(link => {
-            return <li key={link.name}><Link to={link.link} onClick={this.handle}>{link.name}</Link></li>
-          })}
+          {this.props.email !== '' ? 
+            navLinksLogged.map(link => { return <li key={link.name}><Link to={link.link} onClick={this.handle}>{link.name}</Link></li>}) 
+          : navLinksNotLogged.map(link => { return <li key={link.name}><Link to={link.link} onClick={this.handle}>{link.name}</Link></li>})
+          }
         </ul>
       </nav>
     )
@@ -60,5 +71,12 @@ class Navbar extends Component {
 Navbar.propTypes = {
   children: PropTypes.array,
 };
+const mapStateToProps = (state) => ({
+  email: state.auth.user.email,
+})
 
-export default Navbar;
+const mapDispatchToProps = {
+  
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar)

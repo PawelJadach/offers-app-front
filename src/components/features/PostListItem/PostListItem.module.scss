@@ -3,7 +3,7 @@
 .root {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   max-width: 50vw;
   flex-wrap: wrap;
   margin: 50px 100px;
@@ -22,9 +22,9 @@
     }
     .content {
       height: 100%;
-  
       display: flex;
       flex-direction: column;
+      justify-content: flex-start;
   
   
       h3 {
@@ -38,6 +38,33 @@
       hr {
         color: inherit;
       }
+
+      button {
+        margin: 40px auto 0;
+        opacity: 1;
+        position: static;
+        background-color: $color-red-primary;
+        height: 50px;
+        width: 100%;
+        text-align: center;
+        color: white;
+        text-transform: uppercase;
+        font-weight: bold;
+        transition: .2s;
+        border: none;
+      
+        &.edit {
+          margin-top: 20px;
+          margin-bottom: 10px;
+          width: 100%;
+          height: 40px;
+          background-color: $color-dark;
+      
+          &:hover {
+            background-color: $color-red-primary;
+          }
+        }
+      }
   
       .buttons {
         margin-top: 10px;
@@ -46,6 +73,7 @@
           border: none;
           background-color: transparent;
           margin-top: auto;
+          width: 50%;
     
           i {
             font-size: 30px;
@@ -62,10 +90,6 @@
     }
 
   }
-  
- 
-
-  
 
   &:hover a h3 {
     color: $color-red-primary;

@@ -2,15 +2,16 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import styles from './Post.module.scss';
+import { Link } from 'react-router-dom';
 
-export const Post = ({offer, match}) => {
-  const { title, img, price, creationDate, content } = offer;
+export const Post = ({offer, email}) => {
+  const { title, img, price, creationDate, content, authorEmail, id } = offer;
   return (
     <div className={styles.root}>
       <div className={styles.left}>
         <div className={styles.top}>
         <h3 className={styles.title}>{title} </h3>
-        <button className={styles.edit}>Edytuj</button>
+        {email === authorEmail ? <Link to={`/offer/edit/${id}`}><button className={styles.edit}>Edytuj</button></Link> : null}
         <p>Wystawiono: {creationDate}</p>
         </div>
         
@@ -31,7 +32,8 @@ Post.propTypes = {
 }
 
 const mapStateToProps = (state, props) => ({
-  offer: state.offer.offers[state.offer.offers.findIndex(offer => props.match.params.id = offer.id)],
+  offer: state.offer.offers[state.offer.offers.findIndex(offer => Number(props.match.params.id) === offer.id)],
+  email: state.auth.user.email,
 })
 
 const mapDispatchToProps = {

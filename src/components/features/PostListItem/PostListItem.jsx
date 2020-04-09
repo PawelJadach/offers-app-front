@@ -2,8 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './PostListItem.module.scss';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux'
 
-const PostListItem = ({ id, title, price, img, creationDate }) => {
+const PostListItem = ({ id, title, price, img, creationDate, authorEmail, email }) => {
   return (
     <div className={styles.root}>
       <Link to={`/offer/${id}`}>
@@ -21,6 +22,7 @@ const PostListItem = ({ id, title, price, img, creationDate }) => {
             <button><i className="fas fa-cart-arrow-down"></i></button>
             <button><i className="fas fa-star"></i></button>
           </div>
+          {email === authorEmail ? <Link to={`/offer/edit/${id}`}><button className={styles.edit}>Edytuj</button></Link> : null}
         </div>
       </Link>
     </div>
@@ -33,6 +35,17 @@ PostListItem.propTypes = {
   price: PropTypes.number,
   img: PropTypes.string,
   creationDate: PropTypes.string,
+  email: PropTypes.string,
+  authorEmail: PropTypes.string,
 };
 
-export default PostListItem;
+const mapStateToProps = (state) => ({
+  email: state.auth.user.email,
+})
+
+const mapDispatchToProps = {
+  
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostListItem)
+

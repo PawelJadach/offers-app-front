@@ -1,13 +1,14 @@
 import React from 'react'
 // import PropTypes from 'prop-types'
-import styles from './PostAdd.module.scss';
+import styles from './OfferEdit.module.scss';
+import { connect } from 'react-redux'
 
-class PostAdd extends React.Component {
+class OfferEdit extends React.Component {
   state = {
-    title: '',
-    price: 0,
-    img: '',
-    content: '',
+    title: this.props.offer.title,
+    price: this.props.offer.price,
+    img: this.props.offer.img,
+    content: this.props.offer.content,
     titleError: '',
     priceError: '',
     imgError: '',
@@ -139,8 +140,15 @@ class PostAdd extends React.Component {
   }
 }
 
-// PostAdd.propTypes = {
+// OfferEdit.propTypes = {
 //   children: PropTypes.array,
 // };
+const mapStateToProps = (state, props) => ({
+  offer: state.offer.offers[state.offer.offers.findIndex(offer => props.match.params.id = offer.id)],
+})
 
-export default PostAdd;
+const mapDispatchToProps = {
+  
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(OfferEdit)
