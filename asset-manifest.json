@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/offers-app-front/static/css/main.d68335c3.chunk.css",
+    "main.js": "/offers-app-front/static/js/main.01803007.chunk.js",
+    "main.js.map": "/offers-app-front/static/js/main.01803007.chunk.js.map",
+    "runtime-main.js": "/offers-app-front/static/js/runtime-main.8b7943b8.js",
+    "runtime-main.js.map": "/offers-app-front/static/js/runtime-main.8b7943b8.js.map",
+    "static/css/2.f87e9f44.chunk.css": "/offers-app-front/static/css/2.f87e9f44.chunk.css",
+    "static/js/2.4324a099.chunk.js": "/offers-app-front/static/js/2.4324a099.chunk.js",
+    "static/js/2.4324a099.chunk.js.map": "/offers-app-front/static/js/2.4324a099.chunk.js.map",
+    "index.html": "/offers-app-front/index.html",
+    "precache-manifest.e4c5a5acff80d5ab383912951485a558.js": "/offers-app-front/precache-manifest.e4c5a5acff80d5ab383912951485a558.js",
+    "service-worker.js": "/offers-app-front/service-worker.js",
+    "static/css/2.f87e9f44.chunk.css.map": "/offers-app-front/static/css/2.f87e9f44.chunk.css.map",
+    "static/css/main.d68335c3.chunk.css.map": "/offers-app-front/static/css/main.d68335c3.chunk.css.map",
+    "static/js/2.4324a099.chunk.js.LICENSE.txt": "/offers-app-front/static/js/2.4324a099.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.8b7943b8.js",
+    "static/css/2.f87e9f44.chunk.css",
+    "static/js/2.4324a099.chunk.js",
+    "static/css/main.d68335c3.chunk.css",
+    "static/js/main.01803007.chunk.js"
+  ]
+}
