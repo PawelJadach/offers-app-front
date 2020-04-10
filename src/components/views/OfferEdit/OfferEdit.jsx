@@ -1,7 +1,8 @@
 import React from 'react'
-// import PropTypes from 'prop-types'
 import styles from './OfferEdit.module.scss';
 import { connect } from 'react-redux'
+import { editOffer, addedToFalse } from '../../../redux/actions/offerActions';
+import Loader from 'react-loader-spinner'
 
 class OfferEdit extends React.Component {
   state = {
@@ -13,6 +14,7 @@ class OfferEdit extends React.Component {
     priceError: '',
     imgError: '',
     contentError: '',
+    editSuccess: '',
   }
 
   handleChange = e => {
@@ -36,14 +38,18 @@ class OfferEdit extends React.Component {
   }
 
   handleSubmit = e => {
+    const { titleError, imgError, contentError, priceError, title, price, img, content } = this.state;
     e.preventDefault();
     this.checkTitle();
     this.checkPrice();
     this.checkContent();
+    if(titleError === '' && imgError === '' && contentError === '' && priceError === ''){
+      this.props.editOffer({ img: img, content: content, price: price, title: title, authorEmail: this.props.email, id: Number(this.props.match.params.id) });
+    }
   }
 
   checkTitle = (value = this.state.title) => {
-    const regExp = /^[a-zA-Z0-9-]+$/g;
+    const regExp = /^[0-9\s\p{L} ,--.!:()]+$/u;
     const regExpChars = /[a-zA-Z]{5,}/;
 
     if(value.length < 5 || value.length > 30) {
@@ -66,7 +72,7 @@ class OfferEdit extends React.Component {
   }
 
   checkContent = (value = this.state.content) => {
-    const regExp = /^[a-zA-Z0-9-]+$/g;
+    const regExp = /^[0-9\s\p{L} ,--.!:()]+$/u;
 
     if(value.length < 30 || value.length > 1000) {
       this.setState({
@@ -92,6 +98,12 @@ class OfferEdit extends React.Component {
       })
     } 
 
+    else if(value.length > 14 ) {
+      this.setState({
+        priceError: 'Max 14 znaków!'
+      })
+    }
+
     else if(!regExp.test(value)){
       this.setState({
         priceError: 'Cena może zawierać wyłacznie cyfry i przecinek!'
@@ -105,13 +117,40 @@ class OfferEdit extends React.Component {
       imgError: 'Podałeś zły link do zdjęcia!'
     })
   }
+
+  postEdited = () => {
+
+    this.props.addedToFalse();
+    this.setState({
+      editSuccess: 'Ogłoszenie edytowane!',
+    })
+
+    setTimeout(() => {
+      this.setState({
+        editSuccess: '',
+      })
+    }, 2000)
+  }
  
 
   render() {
-    const { title, price, img, content, titleError, priceError, imgError, contentError } = this.state;
+    const { title, price, img, content, titleError, priceError, imgError, contentError, editSuccess } = this.state;
+
+    if(this.props.loading) return ( 
+      <div className={styles.center}>
+        <Loader
+          type="Grid"
+          color="rgba(43, 45, 66, 1)"
+          height={100}
+          width={100}
+        />
+      </div>
+    )
+    if(this.props.added) this.postEdited();
     return (
       <div className={styles.root}>
-         <form action="">
+         <form>
+         {editSuccess ? <div className={styles.success}>{editSuccess}</div> : null}
            <div className={styles.input}>
             <input autoComplete="off" type="text" id='title' className={titleError ? styles.danger : null} maxLength='30' name='title' placeholder='Wpisz tytuł oferty ...'  value={title} onChange={this.handleChange} required/>
               <label htmlFor="title">Tytuł <p>Max znaków - {title.length}/30</p></label>
@@ -134,21 +173,24 @@ class OfferEdit extends React.Component {
             {contentError !== '' ? <div className={styles.error}>{contentError}</div> : null}
            </div>
            <input type="submit" onClick={this.handleSubmit}/>
+           {this.props.error !== '' ? <div className={styles.error}>{this.props.error}</div> : null}
          </form>
       </div>
     )
   }
 }
 
-// OfferEdit.propTypes = {
-//   children: PropTypes.array,
-// };
+
 const mapStateToProps = (state, props) => ({
   offer: state.offer.offers[state.offer.offers.findIndex(offer => Number(props.match.params.id) === offer.id)],
+  loading: state.offer.isLoading,
+  error: state.offer.error,
+  added: state.offer.added,
 })
 
-const mapDispatchToProps = {
-  
-}
+const mapDispatchToProps = dispatch => ({
+  editOffer: (newOffer) => dispatch(editOffer(newOffer)),
+  addedToFalse : () => dispatch(addedToFalse()),
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(OfferEdit)

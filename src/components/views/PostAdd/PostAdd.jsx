@@ -159,7 +159,7 @@ class PostAdd extends React.Component {
     
     return (
       <div className={styles.root}>
-        <form action="">
+        <form>
         {addedSuccess ? <div className={styles.success}>{addedSuccess}</div> : null}
           <div className={styles.input}>
             <input autoComplete="off" type="text" id='title' className={titleError ? styles.danger : null} maxLength='30' name='title' placeholder='Wpisz tytuł oferty ...'  value={title} onChange={this.handleChange} required/>

@@ -78,6 +78,56 @@ const offerReducer = (state = initState, action) => {
         ...state,
       added: false,
     }
+
+
+    case 'EDIT_START':
+      return {
+        ...state,
+      isLoading: true,
+      error: '',
+      added: false,
+    }
+
+    case 'EDIT_OFFER':
+     return {
+      ...state,
+      offers: state.offers.map((offer) => {
+        if(Number(action.newOffer.id) !== offer.id) return offer;
+        else {
+          return {
+            id: action.newOffer.id,
+            title: action.newOffer.title,
+            price: Number(action.newOffer.price),
+            img: action.newOffer.img,
+            content: action.newOffer.content,
+            authorEmail: offer.authorEmail,
+            creationDate: '07-04-2020'
+          }
+        }
+      }),
+     }
+
+    case 'EDIT_SUCCESS':
+      return {
+        ...state,
+      isLoading: false,
+      error: '',
+      added: true,
+    }
+
+    case 'EDIT_ERROR':
+      return {
+        ...state,
+      isLoading: false,
+      error: action.error,
+      added: false,
+    }
+
+    case 'EDIT_FALSE':
+      return {
+        ...state,
+      added: false,
+    }
       
     default:
       return state

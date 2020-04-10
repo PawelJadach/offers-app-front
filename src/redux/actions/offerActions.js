@@ -8,6 +8,14 @@ export const addOffer = (offer) => {
   }
 }
 
+export const editOffer = (newOffer) => {
+  return  (dispatch) => {
+    dispatch({type: 'EDIT_START'});
+    dispatch({type: 'EDIT_OFFER', newOffer: newOffer});
+    setTimeout(() => dispatch({type: 'EDIT_SUCCESS'}), 2000);
+  }
+}
+
 export const addedToFalse = () => {
   return  (dispatch) => {
     dispatch({type: 'ADDED_FALSE'});
