@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './PostAdd.module.scss';
-import { addOffer, addedToFalse } from '../../../redux/actions/offerActions';
+import { addPost } from '../../../redux/actions/postActions';
 import { connect }  from 'react-redux';
 import Loader from 'react-loader-spinner'
 
@@ -51,7 +51,7 @@ class PostAdd extends React.Component {
     this.checkNumber();
     if(titleError === '' && imgError === '' && contentError === '' && priceError === '' && numberError === ''){
       const createdAt = new Date();
-      this.props.addOffer({ photo: img, text: content, price, title, author: this.props.email, created: createdAt, updated: createdAt, phone: number });
+      this.props.addPost({ photo: img, text: content, price, title, author: this.props.email, created: createdAt, updated: createdAt, phone: number });
     }
   }
 
@@ -180,9 +180,8 @@ class PostAdd extends React.Component {
         />
       </div>
     )
-    if(this.props.added) this.postAdded();
     
-    return (
+    else return (
       <div className={styles.root}>
         <form>
         {addedSuccess ? <div className={styles.success}>{addedSuccess}</div> : null}
@@ -227,14 +226,12 @@ class PostAdd extends React.Component {
 
 const mapStateToProps = (state) => ({
   email: state.auth.user.email,
-  loading: state.offer.isLoading,
-  error: state.offer.error,
-  added: state.offer.added,
+  loading: state.post.isLoading,
+  error: state.post.error,
 })
 
 const mapDispatchToProps = dispatch => ({
-  addOffer: (offer) => dispatch(addOffer(offer)),
-  addedToFalse : () => dispatch(addedToFalse()),
+  addPost: (post) => dispatch(addPost(post)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostAdd)
