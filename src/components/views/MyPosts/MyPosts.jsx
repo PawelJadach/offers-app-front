@@ -7,7 +7,6 @@ import { connect } from 'react-redux'
 
 const MyPosts = ({posts, email}) => {
   const myPosts = posts.filter(post => post.author === email);
-  console.log(posts, email)
   return (
     <div className={styles.root}>
       <div className={styles.button}><Link to={process.env.PUBLIC_URL + '/addOffer'}><button className={styles.btn}>Add post</button></Link></div>

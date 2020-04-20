@@ -4,14 +4,9 @@ import PostListItem from '../../features/PostListItem/PostListItem';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { loadingPosts } from '../../../redux/actions/postActions';
 import Loader from 'react-loader-spinner'
 
 class PostList extends React.Component {
-
-  componentDidMount() {
-    if(this.props.posts.length === 0)  this.props.loadingPosts();
-  }
 
   render() {
     const { posts, email, loading, error } = this.props;
@@ -48,9 +43,6 @@ const mapStateToProps = (state) => ({
   error: state.post.error,
 })
 
-const mapDispatchToProps = dispatch => ({
-  loadingPosts: () => (dispatch(loadingPosts()))
-})
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostList)
+export default connect(mapStateToProps)(PostList)
 

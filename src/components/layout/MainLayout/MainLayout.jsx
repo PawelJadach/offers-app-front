@@ -9,25 +9,46 @@ import Post from '../../views/Post/Post';
 import MyPosts from '../../views/MyPosts/MyPosts';
 import OfferEdit from '../../views/OfferEdit/OfferEdit';
 import { connect } from 'react-redux'
+import { loadingPosts } from '../../../redux/actions/postActions';
+import styles from './MainLayout.module.scss';
+import Loader from 'react-loader-spinner'
 
-const MainLayout = ({ email, posts }) => {
-  return (
-    <div>
-      <HashRouter>
-        <Navbar />
-        <Switch>
-          <Route exact path={process.env.PUBLIC_URL + '/'} component={PostList} />
-          {/* <Route exact path={process.env.PUBLIC_URL + '/#/'} component={PostList}> <Redirect to={process.env.PUBLIC_URL + '/#/' + process.env.PUBLIC_URL} /></Route> */}
-          <PrivateRoute email={email} exact path={process.env.PUBLIC_URL + '/addOffer'} component={PostAdd} />
-          <PrivateRoute email={email} exact path={process.env.PUBLIC_URL + '/my-posts'} component={MyPosts} />
-          <PrivateRouteLogin email={email} exact path={process.env.PUBLIC_URL + '/login'} component={LoginPage} />
-          <Route exact path={process.env.PUBLIC_URL + '/offer/:id'} component={Post} />
-          <PrivateRouteEdit email={email} posts={posts} exact path={process.env.PUBLIC_URL + '/post/edit/:id'} component={OfferEdit} />
-          <Route exact path='*'  component={ErrorPage} />
-        </Switch>
-      </HashRouter>
-    </div>
-  )
+class MainLayout extends React.Component {
+  
+  componentDidMount() {
+    this.props.loadingPosts();
+  }
+  
+  render(){
+    
+    const { email, posts, loading } = this.props;
+    if(loading) return ( 
+      <div className={styles.center}>
+        <Loader
+          type="Grid"
+          color="rgba(43, 45, 66, 1)"
+          height={100}
+          width={100}
+        />
+      </div>
+    )
+    return (
+      <div>
+        <HashRouter>
+          <Navbar />
+          <Switch>
+            <Route exact path={process.env.PUBLIC_URL + '/'} component={PostList} />
+            <PrivateRoute email={email} exact path={process.env.PUBLIC_URL + '/addOffer'} component={PostAdd} />
+            <PrivateRoute email={email} exact path={process.env.PUBLIC_URL + '/my-posts'} component={MyPosts} />
+            <PrivateRouteLogin email={email} exact path={process.env.PUBLIC_URL + '/login'} component={LoginPage} />
+            <Route exact path={process.env.PUBLIC_URL + '/offer/:id'} component={Post} />
+            <PrivateRouteEdit email={email} posts={posts} exact path={process.env.PUBLIC_URL + '/offer/edit/:id'} component={OfferEdit} />
+            <Route exact path='*'  component={ErrorPage} />
+          </Switch>
+        </HashRouter>
+      </div>
+    )
+  }
 }
 
 const PrivateRoute = ({ email, component: Component, ...rest }) => (
@@ -48,8 +69,8 @@ const PrivateRouteLogin = ({ email, component: Component, ...rest }) => (
 
 const PrivateRouteEdit = ({ email, posts, computedMatch, component: Component, ...rest }) => {
 
-
-if(email === '' || posts[posts.findIndex(post => Number(computedMatch.params.id) === post.id)].authorEmail !== email ) 
+console.log(posts);
+if(email === '' || posts[posts.findIndex(post => computedMatch.params.id === post._id)].author !== email ) 
 return (
     <Route {...rest} render={(props) => ( <Redirect to='/error' /> )}/>
   )
@@ -61,7 +82,13 @@ else return <Route {...rest} render={(props) => ( <Component {...props} /> )}/>
 const mapStateToProps = (state) => ({
   email: state.auth.user.email,
   posts: state.post.posts,
+  loading: state.post.isLoading,
+})
+
+const mapDispatchToProps = dispatch => ({
+  loadingPosts: () => (dispatch(loadingPosts()))
 })
 
 
-export default connect(mapStateToProps)(MainLayout)
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainLayout)

@@ -57,7 +57,7 @@ class Post extends React.Component {
         <div className={styles.left}>
           <div className={styles.top}>
           <h3 className={styles.title}>{title} </h3>
-          {this.props.email === author ? <Link to={`${process.env.PUBLIC_URL}/post/edit/${_id}`}><button className={styles.edit}>Edytuj</button></Link> : null}
+          {this.props.email === author ? <Link to={`${process.env.PUBLIC_URL}/offer/edit/${_id}`}><button className={styles.edit}>Edytuj</button></Link> : null}
           <p>Wystawiono: {this.makeDateString(date)}</p>
           </div>
           
