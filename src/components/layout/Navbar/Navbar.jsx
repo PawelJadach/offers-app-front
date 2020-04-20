@@ -32,7 +32,7 @@ class Navbar extends Component {
       },
       {
         name: 'My Offers',
-        link: `${process.env.PUBLIC_URL}/my-offers`,
+        link: `${process.env.PUBLIC_URL}/my-posts`,
       },
       {
         name: 'Logout',

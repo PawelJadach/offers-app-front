@@ -4,12 +4,12 @@ import styles from './PostListItem.module.scss';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 
-const PostListItem = ({ id, title, price, img, creationDate, authorEmail, email }) => {
+const PostListItem = ({ _id, title, price, photo, author, email }) => {
   return (
     <div className={styles.root}>
-      <Link to={`/offer/${id}`}>
+      <Link to={`/offer/${_id}`}>
         <div className={styles.img}>
-          <img src={img} alt={title}/>
+          <img src={photo} alt={title}/>
         </div>
         <div className={styles.content}>
           <div className={styles.text}>
@@ -22,7 +22,7 @@ const PostListItem = ({ id, title, price, img, creationDate, authorEmail, email 
             <button><i className="fas fa-cart-arrow-down"></i></button>
             <button><i className="fas fa-star"></i></button>
           </div>
-          {email === authorEmail ? <Link to={`${process.env.PUBLIC_URL}/offer/edit/${id}`}><button className={styles.edit}>Edytuj</button></Link> : null}
+          {email === author ? <Link to={`${process.env.PUBLIC_URL}/offer/edit/${_id}`}><button className={styles.edit}>Edytuj</button></Link> : null}
         </div>
       </Link>
     </div>
@@ -30,13 +30,13 @@ const PostListItem = ({ id, title, price, img, creationDate, authorEmail, email 
 }
 
 PostListItem.propTypes = {
-  id: PropTypes.number,
+  _id: PropTypes.number,
   title: PropTypes.string,
   price: PropTypes.number,
-  img: PropTypes.string,
-  creationDate: PropTypes.string,
+  photo: PropTypes.string,
+  created: PropTypes.string,
   email: PropTypes.string,
-  authorEmail: PropTypes.string,
+  author: PropTypes.string,
 };
 
 const mapStateToProps = (state) => ({

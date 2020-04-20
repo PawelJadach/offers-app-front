@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './ProductList.module.scss';
+import styles from './PostList.module.scss';
 import PostListItem from '../../features/PostListItem/PostListItem'; 
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types'
@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 import { loadingPosts } from '../../../redux/actions/postActions';
 import Loader from 'react-loader-spinner'
 
-class ProductList extends React.Component {
+class PostList extends React.Component {
 
   componentDidMount() {
     if(this.props.posts.length === 0)  this.props.loadingPosts();
@@ -37,7 +37,7 @@ class ProductList extends React.Component {
   }
 }
 
-ProductList.propTypes = {
+PostList.propTypes = {
   posts: PropTypes.array,
 }
 
@@ -52,5 +52,5 @@ const mapDispatchToProps = dispatch => ({
   loadingPosts: () => (dispatch(loadingPosts()))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProductList)
+export default connect(mapStateToProps, mapDispatchToProps)(PostList)
 
