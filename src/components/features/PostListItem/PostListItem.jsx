@@ -22,7 +22,7 @@ const PostListItem = ({ id, title, price, img, creationDate, authorEmail, email 
             <button><i className="fas fa-cart-arrow-down"></i></button>
             <button><i className="fas fa-star"></i></button>
           </div>
-          {email === authorEmail ? <Link to={`/offer/edit/${id}`}><button className={styles.edit}>Edytuj</button></Link> : null}
+          {email === authorEmail ? <Link to={`${process.env.PUBLIC_URL}/offer/edit/${id}`}><button className={styles.edit}>Edytuj</button></Link> : null}
         </div>
       </Link>
     </div>

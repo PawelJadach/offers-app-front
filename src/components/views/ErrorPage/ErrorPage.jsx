@@ -7,7 +7,7 @@ const ErrorPage = () => {
       <div>
         <h1>Error 404 - Page not Found</h1>
         <p>Page not found. Let us help guide you out and get you back home.</p>
-        <a href="/">Home</a>
+        <a href={ process.env.PUBLIC_URL + "/"}>Home</a>
       </div>
     </div>
   )

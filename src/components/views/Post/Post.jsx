@@ -11,7 +11,7 @@ export const Post = ({offer, email}) => {
       <div className={styles.left}>
         <div className={styles.top}>
         <h3 className={styles.title}>{title} </h3>
-        {email === authorEmail ? <Link to={`/offer/edit/${id}`}><button className={styles.edit}>Edytuj</button></Link> : null}
+        {email === authorEmail ? <Link to={`${process.env.PUBLIC_URL}/offer/edit/${id}`}><button className={styles.edit}>Edytuj</button></Link> : null}
         <p>Wystawiono: {creationDate}</p>
         </div>
         

@@ -10,7 +10,7 @@ const MyOffers = ({offers, email}) => {
   console.log(offers, email)
   return (
     <div className={styles.root}>
-      <div className={styles.button}><Link to='/addOffer'><button className={styles.btn}>Add offer</button></Link></div>
+      <div className={styles.button}><Link to={process.env.PUBLIC_URL + '/addOffer'}><button className={styles.btn}>Add offer</button></Link></div>
       {myOffers.map(offer => <PostListItem {...offer} key={offer.id}/>)}
     </div>
   )

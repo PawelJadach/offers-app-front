@@ -30,7 +30,7 @@ class ProductList extends React.Component {
     else if (error !== '') return <div className={styles.root}>{error}</div>
     else return (
       <div className={styles.root}>
-        {email !== '' ? <div className={styles.button}><Link to='/addOffer'><button className={styles.btn}>Add offer</button></Link></div> : null}
+        {email !== '' ? <div className={styles.button}><Link to={process.env.PUBLIC_URL + '/addOffer'}><button className={styles.btn}>Add offer</button></Link></div> : null}
         {offers.map(offer => <PostListItem {...offer} key={offer.id}/>)}
       </div>
     )

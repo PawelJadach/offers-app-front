@@ -2,7 +2,6 @@ const initState = {
   offers: [],
   error: '',
   isLoading: false,
-  nextId: 6,
   added: false,
 };
 
@@ -34,19 +33,20 @@ const offerReducer = (state = initState, action) => {
     }
 
     case 'ADD_OFFER':
-      const { title, price, img, content, authorEmail } = action.offer;
+      const { title, price, photo, text, author, phone, status, _id, created } = action.offer;
      return {
       ...state,
       offers: state.offers.concat({
-        id: state.nextId,
-        title: title,
+        id: _id,
+        title,
         price: Number(price),
-        img: img,
-        content: content,
-        authorEmail: authorEmail,
-        creationDate: '07-04-2020',
-      }),
-      nextId: state.nextId + 1,
+        photo,
+        text,
+        author,
+        created,
+        phone,
+        status,
+      })
      }
 
     case 'ADDED_START':

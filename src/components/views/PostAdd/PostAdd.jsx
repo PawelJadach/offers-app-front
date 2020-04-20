@@ -9,9 +9,11 @@ class PostAdd extends React.Component {
     title: '',
     price: 0,
     img: '',
+    number: '',
     content: '',
     titleError: '',
     priceError: '',
+    numberError: '',
     imgError: '',
     contentError: '',
     addedSuccess: '',
@@ -32,19 +34,24 @@ class PostAdd extends React.Component {
       case 'content':
         this.checkContent(e.target.value);
       break;
+      case 'number':
+        this.checkNumber(e.target.value);
+      break;
       default: 
       break;
     }
   }
 
   handleSubmit = e => {
-    const { titleError, imgError, contentError, priceError, title, price, img, content } = this.state;
+    const { titleError, imgError, contentError, priceError, numberError, number, title, price, img, content } = this.state;
     e.preventDefault();
     this.checkTitle();
     this.checkPrice();
     this.checkContent();
-    if(titleError === '' && imgError === '' && contentError === '' && priceError === ''){
-      this.props.addOffer({ img: img, content: content, price: price, title: title, authorEmail: this.props.email });
+    this.checkNumber();
+    if(titleError === '' && imgError === '' && contentError === '' && priceError === '' && numberError === ''){
+      const createdAt = new Date();
+      this.props.addOffer({ photo: img, text: content, price, title, author: this.props.email, created: createdAt, updated: createdAt, phone: number });
     }
   }
 
@@ -111,6 +118,22 @@ class PostAdd extends React.Component {
     }
   }
 
+  checkNumber = (value = this.state.number) => {
+    const regExp = /^[0-9]+$/g;
+
+    if (value.length < 6 || value.length > 14){
+      this.setState({
+        numberError: 'Numer poinien zawierać od 6 do 14 znaków!'
+      })
+    }
+
+    else if(!regExp.test(value)){
+      this.setState({
+        numberError: 'Numer może składać się wyłącznie z cyfr!',
+      })
+    }
+  }
+
   badImg = (e) => {
     e.preventDefault();
     this.setState({
@@ -122,9 +145,11 @@ class PostAdd extends React.Component {
     this.setState({
       title: '',
       price: 0,
+      number: null,
       img: '',
       content: '',
       titleError: '',
+      numberError: '',
       priceError: '',
       imgError: '',
       contentError: '',
@@ -144,7 +169,7 @@ class PostAdd extends React.Component {
  
 
   render() {
-    const { title, price, img, content, titleError, priceError, imgError, contentError, addedSuccess } = this.state;
+    const { title, price, img, content, number, titleError, priceError, imgError, contentError, addedSuccess, numberError } = this.state;
     if(this.props.loading) return ( 
       <div className={styles.center}>
         <Loader
@@ -170,6 +195,11 @@ class PostAdd extends React.Component {
             <input autoComplete="off" type="number" min="0" className={priceError ? styles.danger : null} id='price' name='price' placeholder='Wpisz cenę ...' value={price} onChange={this.handleChange} required/>
             <label htmlFor="price">Cena <p>Max znaków - {price.length}/14</p></label>
             {priceError !== '' ? <div className={styles.error}>{priceError}</div> : null}
+          </div>
+          <div className={styles.input}>
+            <input autoComplete="off" type="number" min="0" className={numberError ? styles.danger : null} id='number' name='number' placeholder='Wpisz swój numer ...' value={number} onChange={this.handleChange} required/>
+            <label htmlFor="number">Numer telefonu <p>Max znaków - {number.length}/14</p></label>
+            {numberError !== '' ? <div className={styles.error}>{numberError}</div> : null}
           </div>
           <div className={styles.input}>
             <input autoComplete="off" type="text" id='img' className={imgError ? styles.danger : null} name='img' placeholder='Wprowadź link do zdjęcia ...' value={img} onChange={this.handleChange} required/>
