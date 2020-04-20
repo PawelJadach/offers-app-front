@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
 
 import authReducer from './authReducer';
-import offerReducer from './offerReducer';
+import postReducer from './postReducer';
 
 
 const rootReducer = combineReducers({
   auth: authReducer,
-  offer: offerReducer,
+  post: postReducer,
 });
 
 export default rootReducer;

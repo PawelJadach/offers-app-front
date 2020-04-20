@@ -1,22 +1,26 @@
 import Axios from 'axios';
+import {
+  ADD_ERROR, ADD_START, ADD_SUCCESS,
+  EDIT_ERROR, EDIT_START, EDIT_SUCCESS,
+  LOADING_ERROR, LOADING_SUCCESS, LOADING_START,
+  // DELETE_SUCCESS, DELETE_START, DELETE_ERROR,
+} from '../constants/actionTypes';
+import { API_URL } from '../../constants/constants';
 
-export const addOffer = (offer) => {
+export const addPost = (post) => {
   return  (dispatch) => {
-    dispatch({type: 'ADDED_START'});
-
+    dispatch({type: ADD_START});
     Axios
-    .post('http://localhost:8000/api/posts', {offer})
+    .post(`${API_URL}/posts`, { post })
     .then(res => {
-      dispatch({type: 'ADD_OFFER', offer: res.data.newPost});
-      dispatch({type: 'ADDED_SUCCESS'});
+      dispatch({type: ADD_SUCCESS, post: res.data.newPost});
     })
     .catch(err => {
-      console.log(err)
-      dispatch({type: 'ADDED_ERROR'});
+      dispatch({type: ADD_ERROR, error: err});
     });
 
   }
-}
+};
 
 export const editOffer = (newOffer) => {
   return  (dispatch) => {

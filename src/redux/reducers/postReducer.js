@@ -1,8 +1,14 @@
+import { 
+  LOADING_ERROR, LOADING_START, LOADING_SUCCESS, 
+  EDIT_ERROR, EDIT_START, EDIT_SUCCESS, 
+  ADD_ERROR, ADD_SUCCESS, ADD_START,
+  // DELETE_ERROR, DELETE_START, DELETE_SUCCESS,
+} from '../constants/actionTypes';
+
 const initState = {
   offers: [],
   error: '',
   isLoading: false,
-  added: false,
 };
 
 
@@ -10,14 +16,13 @@ const initState = {
 const offerReducer = (state = initState, action) => {
   switch (action.type) {
     
-    case 'LOADING_START': 
+    case LOADING_START: 
     return {
       ...state,
       isLoading: true,
-      added: false,
     }
 
-    case 'LOADING_SUCCESS':
+    case LOADING_SUCCESS:
       return {
         ...state,
       isLoading: false,
@@ -25,17 +30,24 @@ const offerReducer = (state = initState, action) => {
       error: '',
     }
 
-    case 'LOADING_ERROR':
+    case LOADING_ERROR:
       return {
         ...state,
       isLoading: false,
       error: action.error,
     }
 
-    case 'ADD_OFFER':
+    case ADD_START:
+      return {
+        ...state,
+      isLoading: true,
+      error: '',
+    }
+
+    case ADD_SUCCESS:
       const { title, price, photo, text, author, phone, status, _id, created } = action.offer;
-     return {
-      ...state,
+      return {
+        ...state,
       offers: state.offers.concat({
         id: _id,
         title,
@@ -46,51 +58,30 @@ const offerReducer = (state = initState, action) => {
         created,
         phone,
         status,
-      })
-     }
-
-    case 'ADDED_START':
-      return {
-        ...state,
-      isLoading: true,
-      error: '',
-      added: false,
-    }
-
-    case 'ADDED_SUCCESS':
-      return {
-        ...state,
+      }),
       isLoading: false,
       error: '',
-      added: true,
     }
 
-    case 'ADDED_ERROR':
+    case ADD_ERROR:
       return {
         ...state,
       isLoading: false,
       error: action.error,
-      added: false,
     }
 
-    case 'ADDED_FALSE':
-      return {
-        ...state,
-      added: false,
-    }
-
-
-    case 'EDIT_START':
+    case EDIT_START:
       return {
         ...state,
       isLoading: true,
       error: '',
-      added: false,
     }
 
-    case 'EDIT_OFFER':
-     return {
-      ...state,
+    case EDIT_SUCCESS:
+      return {
+        ...state,
+      isLoading: false,
+      error: '',
       offers: state.offers.map((offer) => {
         if(Number(action.newOffer.id) !== offer.id) return offer;
         else {
@@ -105,28 +96,13 @@ const offerReducer = (state = initState, action) => {
           }
         }
       }),
-     }
-
-    case 'EDIT_SUCCESS':
-      return {
-        ...state,
-      isLoading: false,
-      error: '',
-      added: true,
     }
 
-    case 'EDIT_ERROR':
+    case EDIT_ERROR:
       return {
         ...state,
       isLoading: false,
       error: action.error,
-      added: false,
-    }
-
-    case 'EDIT_FALSE':
-      return {
-        ...state,
-      added: false,
     }
       
     default:
