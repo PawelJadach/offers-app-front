@@ -1,7 +1,7 @@
 import Axios from 'axios';
 import {
   ADD_ERROR, ADD_START, ADD_SUCCESS,
-  EDIT_ERROR, EDIT_START, EDIT_SUCCESS,
+  // EDIT_ERROR, EDIT_START, EDIT_SUCCESS,
   LOADING_ERROR, LOADING_SUCCESS, LOADING_START,
   // DELETE_SUCCESS, DELETE_START, DELETE_ERROR,
 } from '../constants/actionTypes';
@@ -15,6 +15,9 @@ export const loadingPosts  = () => {
     .get(`${API_URL}/posts`)
     .then(res => {
       dispatch({type: LOADING_SUCCESS, posts: res.data})
+    })
+    .catch(err => {
+      dispatch({type: LOADING_ERROR, error: err})
     })
   }
 }
@@ -47,8 +50,3 @@ export const addedToFalse = () => {
     dispatch({type: 'ADDED_FALSE'});
   }
 }
-
-
-
-
-const offers = [];

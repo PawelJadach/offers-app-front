@@ -4,17 +4,17 @@ import PostListItem from '../../features/PostListItem/PostListItem';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { fetchOffers } from '../../../redux/actions/offerActions';
+import { loadingPosts } from '../../../redux/actions/postActions';
 import Loader from 'react-loader-spinner'
 
 class ProductList extends React.Component {
 
   componentDidMount() {
-    if(this.props.offers.length === 0)  this.props.fetchOffers();
+    if(this.props.posts.length === 0)  this.props.loadingPosts();
   }
 
   render() {
-    const { offers, email, loading, error } = this.props;
+    const { posts, email, loading, error } = this.props;
 
     if(loading) return ( 
       <div className={styles.center}>
@@ -30,26 +30,26 @@ class ProductList extends React.Component {
     else if (error !== '') return <div className={styles.root}>{error}</div>
     else return (
       <div className={styles.root}>
-        {email !== '' ? <div className={styles.button}><Link to={process.env.PUBLIC_URL + '/addOffer'}><button className={styles.btn}>Add offer</button></Link></div> : null}
-        {offers.map(offer => <PostListItem {...offer} key={offer.id}/>)}
+        {email !== '' ? <div className={styles.button}><Link to={process.env.PUBLIC_URL + '/addOffer'}><button className={styles.btn}>Add post</button></Link></div> : null}
+        {posts.map(post => <PostListItem {...post} key={post.id}/>)}
       </div>
     )
   }
 }
 
 ProductList.propTypes = {
-  offers: PropTypes.array,
+  posts: PropTypes.array,
 }
 
 const mapStateToProps = (state) => ({
-  offers: state.offer.offers,
+  posts: state.post.posts,
   email: state.auth.user.email,
-  loading: state.offer.isLoading,
-  error: state.offer.error,
+  loading: state.post.isLoading,
+  error: state.post.error,
 })
 
 const mapDispatchToProps = dispatch => ({
-  fetchOffers: () => (dispatch(fetchOffers()))
+  loadingPosts: () => (dispatch(loadingPosts()))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductList)

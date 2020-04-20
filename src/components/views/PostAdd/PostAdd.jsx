@@ -50,7 +50,6 @@ class PostAdd extends React.Component {
     this.checkText();
     this.checkPhone();
     if(titleError === '' && photoError === '' && textError === '' && priceError === '' && phoneError === ''){
-      const created = new Date();
       this.props.addPost({ photo, text, price, title, author: this.props.email, phone });
     }
   }
