@@ -13,7 +13,7 @@ const initState = {
 
 
 
-const offerReducer = (state = initState, action) => {
+const postReducer = (state = initState, action) => {
   switch (action.type) {
     
     case LOADING_START: 
@@ -26,7 +26,7 @@ const offerReducer = (state = initState, action) => {
       return {
         ...state,
       isLoading: false,
-      posts: [...action.posts],
+      posts: action.posts,
       error: '',
     }
 
@@ -83,8 +83,8 @@ const offerReducer = (state = initState, action) => {
         ...state,
       isLoading: false,
       error: '',
-      posts: state.posts.map((offer) => {
-        if(Number(action.newOffer.id) !== offer.id) return offer;
+      posts: state.posts.map((post) => {
+        if(Number(action.newOffer.id) !== post.id) return post;
         else {
           return {
             id: action.newOffer.id,
@@ -92,7 +92,7 @@ const offerReducer = (state = initState, action) => {
             price: Number(action.newOffer.price),
             img: action.newOffer.img,
             content: action.newOffer.content,
-            authorEmail: offer.authorEmail,
+            authorEmail: post.authorEmail,
             creationDate: '07-04-2020'
           }
         }
@@ -111,4 +111,4 @@ const offerReducer = (state = initState, action) => {
   }
 };
 
-export default offerReducer;
+export default postReducer;

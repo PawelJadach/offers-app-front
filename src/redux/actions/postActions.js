@@ -7,6 +7,18 @@ import {
 } from '../constants/actionTypes';
 import { API_URL } from '../../constants/constants';
 
+
+export const loadingPosts  = () => {
+  return  (dispatch) => {
+    dispatch({type: LOADING_START});
+    Axios
+    .get(`${API_URL}/posts`)
+    .then(res => {
+      dispatch({type: LOADING_SUCCESS, posts: res.data})
+    })
+  }
+}
+
 export const addPost = (post) => {
   return  (dispatch) => {
     dispatch({type: ADD_START});
@@ -36,12 +48,7 @@ export const addedToFalse = () => {
   }
 }
 
-export const fetchOffers  = () => {
-  return  (dispatch) => {
-    dispatch({type: 'LOADING_START'});
-    setTimeout(() => dispatch({type: 'LOADING_SUCCESS', offers: offers}), 2000);
-  }
-}
+
 
 
 const offers = [];
