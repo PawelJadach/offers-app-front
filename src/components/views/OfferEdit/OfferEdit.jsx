@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './OfferEdit.module.scss';
 import { connect } from 'react-redux'
-import { editOffer, addedToFalse } from '../../../redux/actions/offerActions';
+import { editOffer, addedToFalse } from '../../../redux/actions/postActions';
 import Loader from 'react-loader-spinner'
 
 class OfferEdit extends React.Component {

@@ -6,7 +6,7 @@ import {
 } from '../constants/actionTypes';
 
 const initState = {
-  offers: [],
+  posts: [],
   error: '',
   isLoading: false,
 };
@@ -26,7 +26,7 @@ const offerReducer = (state = initState, action) => {
       return {
         ...state,
       isLoading: false,
-      offers: [...action.offers],
+      posts: [...action.posts],
       error: '',
     }
 
@@ -45,22 +45,23 @@ const offerReducer = (state = initState, action) => {
     }
 
     case ADD_SUCCESS:
-      const { title, price, photo, text, author, phone, status, _id, created } = action.offer;
+      const { title, price, photo, text, author, phone, status, _id, created, updated } = action.post;
       return {
         ...state,
-      offers: state.offers.concat({
-        id: _id,
-        title,
-        price: Number(price),
-        photo,
-        text,
-        author,
-        created,
-        phone,
-        status,
-      }),
-      isLoading: false,
-      error: '',
+        posts: state.posts.concat({
+          id: _id,
+          title,
+          price: Number(price),
+          photo,
+          text,
+          author,
+          created,
+          updated,
+          phone,
+          status,
+        }),
+        isLoading: false,
+        error: '',
     }
 
     case ADD_ERROR:
@@ -82,7 +83,7 @@ const offerReducer = (state = initState, action) => {
         ...state,
       isLoading: false,
       error: '',
-      offers: state.offers.map((offer) => {
+      posts: state.posts.map((offer) => {
         if(Number(action.newOffer.id) !== offer.id) return offer;
         else {
           return {

@@ -8,14 +8,14 @@ class PostAdd extends React.Component {
   state = {
     title: '',
     price: 0,
-    img: '',
-    number: '',
-    content: '',
+    photo: '',
+    phone: '',
+    text: '',
     titleError: '',
     priceError: '',
-    numberError: '',
-    imgError: '',
-    contentError: '',
+    phoneError: '',
+    photoError: '',
+    textError: '',
     addedSuccess: '',
   }
 
@@ -31,11 +31,11 @@ class PostAdd extends React.Component {
       case 'price':
         this.checkPrice(e.target.value);
       break;
-      case 'content':
-        this.checkContent(e.target.value);
+      case 'text':
+        this.checkText(e.target.value);
       break;
-      case 'number':
-        this.checkNumber(e.target.value);
+      case 'phone':
+        this.checkPhone(e.target.value);
       break;
       default: 
       break;
@@ -43,15 +43,15 @@ class PostAdd extends React.Component {
   }
 
   handleSubmit = e => {
-    const { titleError, imgError, contentError, priceError, numberError, number, title, price, img, content } = this.state;
+    const { titleError, photoError, textError, priceError, phoneError, phone, title, price, photo, text } = this.state;
     e.preventDefault();
     this.checkTitle();
     this.checkPrice();
-    this.checkContent();
-    this.checkNumber();
-    if(titleError === '' && imgError === '' && contentError === '' && priceError === '' && numberError === ''){
-      const createdAt = new Date();
-      this.props.addPost({ photo: img, text: content, price, title, author: this.props.email, created: createdAt, updated: createdAt, phone: number });
+    this.checkText();
+    this.checkPhone();
+    if(titleError === '' && photoError === '' && textError === '' && priceError === '' && phoneError === ''){
+      const created = new Date();
+      this.props.addPost({ photo, text, price, title, author: this.props.email, phone });
     }
   }
 
@@ -78,24 +78,22 @@ class PostAdd extends React.Component {
     }
   }
 
-  checkContent = (value = this.state.content) => {
+  checkText = (value = this.state.text) => {
     const regExp = /^[0-9\s\p{L} ,--.!:()]+$/u;
 
     if(value.length < 30 || value.length > 1000) {
       this.setState({
-        contentError: 'Treść powinna zawierać od 30 do 1000 znaków!'
+        textError: 'Treść powinna zawierać od 30 do 1000 znaków!'
       })
     } 
 
     else if(!regExp.test(value)){
       this.setState({
-        contentError: 'Usuń znaki specjalne!'
+        textError: 'Usuń znaki specjalne!'
       })
     }
   }
 
-
-  
   checkPrice = (value = this.state.price) => {
     const regExp = /^[0-9,.]+$/g;
 
@@ -118,26 +116,26 @@ class PostAdd extends React.Component {
     }
   }
 
-  checkNumber = (value = this.state.number) => {
+  checkPhone = (value = this.state.phone) => {
     const regExp = /^[0-9]+$/g;
 
     if (value.length < 6 || value.length > 14){
       this.setState({
-        numberError: 'Numer poinien zawierać od 6 do 14 znaków!'
+        phoneError: 'Numer poinien zawierać od 6 do 14 znaków!'
       })
     }
 
     else if(!regExp.test(value)){
       this.setState({
-        numberError: 'Numer może składać się wyłącznie z cyfr!',
+        phoneError: 'Numer może składać się wyłącznie z cyfr!',
       })
     }
   }
 
-  badImg = (e) => {
+  badPhoto = (e) => {
     e.preventDefault();
     this.setState({
-      imgError: 'Podałeś zły link do zdjęcia!'
+      photoError: 'Podałeś zły link do zdjęcia!'
     })
   }
 
@@ -145,14 +143,14 @@ class PostAdd extends React.Component {
     this.setState({
       title: '',
       price: 0,
-      number: null,
-      img: '',
-      content: '',
+      phone: null,
+      photo: '',
+      text: '',
       titleError: '',
-      numberError: '',
+      phoneError: '',
       priceError: '',
-      imgError: '',
-      contentError: '',
+      photoError: '',
+      textError: '',
     })
 
     this.props.addedToFalse();
@@ -169,7 +167,7 @@ class PostAdd extends React.Component {
  
 
   render() {
-    const { title, price, img, content, number, titleError, priceError, imgError, contentError, addedSuccess, numberError } = this.state;
+    const { title, price, photo, text, phone, titleError, priceError, photoError, textError, addedSuccess, phoneError } = this.state;
     if(this.props.loading) return ( 
       <div className={styles.center}>
         <Loader
@@ -191,25 +189,25 @@ class PostAdd extends React.Component {
               {titleError !== '' ? <div className={styles.error}>{titleError}</div> : null}
           </div>
           <div className={styles.input}>
-            <input autoComplete="off" type="number" min="0" className={priceError ? styles.danger : null} id='price' name='price' placeholder='Wpisz cenę ...' value={price} onChange={this.handleChange} required/>
+            <input autoComplete="off" type="phone" min="0" className={priceError ? styles.danger : null} id='price' name='price' placeholder='Wpisz cenę ...' value={price} onChange={this.handleChange} required/>
             <label htmlFor="price">Cena <p>Max znaków - {price.length}/14</p></label>
             {priceError !== '' ? <div className={styles.error}>{priceError}</div> : null}
           </div>
           <div className={styles.input}>
-            <input autoComplete="off" type="number" min="0" className={numberError ? styles.danger : null} id='number' name='number' placeholder='Wpisz swój numer ...' value={number} onChange={this.handleChange} required/>
-            <label htmlFor="number">Numer telefonu <p>Max znaków - {number.length}/14</p></label>
-            {numberError !== '' ? <div className={styles.error}>{numberError}</div> : null}
+            <input autoComplete="off" type="phone" min="0" className={phoneError ? styles.danger : null} id='phone' name='phone' placeholder='Wpisz swój numer ...' value={phone} onChange={this.handleChange} required/>
+            <label htmlFor="phone">Numer telefonu <p>Max znaków - {phone.length}/14</p></label>
+            {phoneError !== '' ? <div className={styles.error}>{phoneError}</div> : null}
           </div>
           <div className={styles.input}>
-            <input autoComplete="off" type="text" id='img' className={imgError ? styles.danger : null} name='img' placeholder='Wprowadź link do zdjęcia ...' value={img} onChange={this.handleChange} required/>
-              <label htmlFor="img">Zdjęcie</label>
-              { img && imgError === '' ? <div className={styles.img}><img onError={this.badImg} src={img} alt='Preview'/></div> : null}
-              {imgError !== '' ? <div className={styles.error}>{imgError}</div> : null}
+            <input autoComplete="off" type="text" id='photo' className={photoError ? styles.danger : null} name='photo' placeholder='Wprowadź link do zdjęcia ...' value={photo} onChange={this.handleChange} required/>
+              <label htmlFor="photo">Zdjęcie</label>
+              { photo && photoError === '' ? <div className={styles.photo}><photo onError={this.badPhoto} src={photo} alt='Preview'/></div> : null}
+              {photoError !== '' ? <div className={styles.error}>{photoError}</div> : null}
           </div>
           <div className={styles.input}>
-            <textarea autoComplete="off" id='content' name='content'  className={contentError ? styles.danger : null} maxLength='1000' placeholder='Wpisz treść oferty ...' value={content} onChange={this.handleChange} required/>
-            <label htmlFor="content" >Opis <p>Max znaków - {content.length}/1000</p></label>
-            {contentError !== '' ? <div className={styles.error}>{contentError}</div> : null}
+            <textarea autoComplete="off" id='text' name='text'  className={textError ? styles.danger : null} maxLength='1000' placeholder='Wpisz treść oferty ...' value={text} onChange={this.handleChange} required/>
+            <label htmlFor="text" >Opis <p>Max znaków - {text.length}/1000</p></label>
+            {textError !== '' ? <div className={styles.error}>{textError}</div> : null}
           </div>
           <input type="submit" onClick={this.handleSubmit}/>
           {this.props.error !== '' ? <div className={styles.error}>{this.props.error}</div> : null}
