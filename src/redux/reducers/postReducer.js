@@ -34,7 +34,7 @@ const postReducer = (state = initState, action) => {
       return {
         ...state,
       isLoading: false,
-      error: action.error,
+      error: 'Upload offers false',
     }
 
     case ADD_START:

@@ -13,3 +13,14 @@ export const EDIT_ERROR = 'EDIT_ERROR';
 export const DELETE_START = 'DELETE_START';
 export const DELETE_SUCCESS = 'DELETE_SUCCESS';
 export const DELETE_ERROR = 'DELETE_ERROR';
+
+export const GET_FROM_STORAGE = 'GET_FROM_STORAGE';
+
+export const LOGIN_START = 'LOGIN_START';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_ERROR = 'LOGIN_ERROR';
+
+
+export const LOGOUT_START = 'LOGOUT_START';
+export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
+export const LOGOUT_ERROR = 'LOGOUT_ERROR';
