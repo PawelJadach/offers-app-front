@@ -5,11 +5,11 @@ import {
 } from '../constants/actionTypes';
 
 
-export const loginUser  = async (email) => {
-  return  (dispatch) => {
+export const loginUser = (email)  => {
+  return async (dispatch) => {
     dispatch({type: LOGIN_START});
     await localStorage.setItem('email', email);
-    console.log(localStorage.getItem('email'));
+    dispatch({type: LOGIN_SUCCESS, email})
   }
 }
 
@@ -20,11 +20,11 @@ export const getFromStorage = () => {
   }
 };
 
-export const logoutUser = async (newOffer) => {
-  return  (dispatch) => {
+export const logoutUser = (newOffer) => {
+  return  async (dispatch) => {
     dispatch({type: LOGOUT_START});
     await localStorage.removeItem('email');
-    console.log(localStorage.getItem('email'))
+    dispatch({type: LOGOUT_SUCCESS})
   }
 }
 

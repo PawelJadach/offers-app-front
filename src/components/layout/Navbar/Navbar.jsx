@@ -4,6 +4,7 @@ import styles from './Navbar.module.scss';
 import Hamburger from '../../common/Hamburger/Hamburger';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
+import { logoutUser } from '../../../redux/actions/authActions';
 
 class Navbar extends Component {
 
@@ -17,10 +18,11 @@ class Navbar extends Component {
     }));
   };
 
-  handle = () => {
+  handle = (e) => {
     this.setState({
       menu: false,
     })
+    if(e.target.text !== 'Logout') this.props.logoutUser();
   }
 
   
@@ -59,7 +61,9 @@ class Navbar extends Component {
             <Hamburger checked={this.state.menu} click={this.showMenu}/>
           </div>
           {this.props.email !== '' ? 
-            navLinksLogged.map(link => { return <li key={link.name}><Link to={link.link} onClick={this.handle}>{link.name}</Link></li>}) 
+            navLinksLogged.map(link => { 
+              if(link.name === 'Logout') return <li className={styles.logout} key={link.name} onClick={this.handle}>{link.name}</li>
+              return <li key={link.name}><Link to={link.link} onClick={this.handle}>{link.name}</Link></li>}) 
           : navLinksNotLogged.map(link => { return <li key={link.name}><Link to={link.link} onClick={this.handle}>{link.name}</Link></li>})
           }
         </ul>
@@ -75,8 +79,8 @@ const mapStateToProps = (state) => ({
   email: state.auth.user.email,
 })
 
-const mapDispatchToProps = {
-  
-}
+const mapDispatchToProps = dispatch => ({
+  logoutUser: () => dispatch(logoutUser())
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar)

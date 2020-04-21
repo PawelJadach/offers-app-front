@@ -19,13 +19,17 @@ const authReducer = (state = initState, action) => {
     case LOGIN_SUCCESS: 
       return {
         ...state,
-        email: action.email,
+        user: {
+          email: action.email
+        },
         error: ''
       }
     case LOGOUT_SUCCESS: 
       return {
         ...state,
-        email: '',
+        user: {
+          email: ''
+        },
         error: ''
       }
     default:

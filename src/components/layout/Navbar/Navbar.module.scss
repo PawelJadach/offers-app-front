@@ -35,6 +35,20 @@
       }
     }
 
+    .logout {
+      padding: 20px 30px;
+      display: block;
+      color: $navbar-color;
+      text-transform: uppercase;
+      font-weight: bold;
+      transition: .2s;
+
+        &:hover{
+          color: $navbar-color-hover;
+          cursor: pointer;
+        }
+    }
+
     
   }
 }

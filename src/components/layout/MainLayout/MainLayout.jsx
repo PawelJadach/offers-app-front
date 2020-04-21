@@ -63,7 +63,7 @@ const PrivateRouteLogin = ({ email, component: Component, ...rest }) => (
   <Route {...rest} render={(props) => (
     email === ""
       ? <Component {...props} />
-      : <Redirect to='/error' />
+      : <Redirect to='/' />
   )} />
 )
 
