@@ -22,7 +22,7 @@ class Navbar extends Component {
     this.setState({
       menu: false,
     })
-    if(e.target.text !== 'Logout') this.props.logoutUser();
+    if(e.target.value === 0) this.props.logoutUser();
   }
 
   
