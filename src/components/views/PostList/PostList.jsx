@@ -26,7 +26,7 @@ class PostList extends React.Component {
     else return (
       <div className={styles.root}>
         {email !== '' ? <div className={styles.button}><Link to={process.env.PUBLIC_URL + '/addOffer'}><button className={styles.btn}>Add post</button></Link></div> : null}
-        {posts.map(post => <PostListItem {...post} key={post.id}/>)}
+        {posts.map(post => <PostListItem {...post} key={post._id}/>)}
       </div>
     )
   }

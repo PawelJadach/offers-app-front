@@ -24,6 +24,7 @@ export const getFromStorage = () => {
   return  (dispatch) => {
     const email = localStorage.getItem('email');
     if(email && email !== '') dispatch({type: GET_FROM_STORAGE, email})
+    else dispatch({type: LOGOUT_SUCCESS})
   }
 };
 

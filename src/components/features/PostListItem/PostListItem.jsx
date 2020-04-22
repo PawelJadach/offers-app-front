@@ -30,7 +30,7 @@ const PostListItem = ({ _id, title, price, photo, author, email }) => {
 }
 
 PostListItem.propTypes = {
-  _id: PropTypes.number,
+  _id: PropTypes.string,
   title: PropTypes.string,
   price: PropTypes.number,
   photo: PropTypes.string,

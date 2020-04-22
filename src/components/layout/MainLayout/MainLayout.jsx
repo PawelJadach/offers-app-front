@@ -17,15 +17,14 @@ import { getFromStorage } from '../../../redux/actions/authActions';
 
 class MainLayout extends React.Component {
   
-  componentDidMount() {
-    this.props.getUserFromStorage();
+  componentDidMount()  {
     this.props.loadingPosts();
   }
   
   render(){
     
-    const { email, posts, loading } = this.props;
-    if(loading) return ( 
+    const { email, posts, loading, loadingAuth } = this.props;
+    if(loading || loadingAuth) return ( 
       <div className={styles.center}>
         <Loader
           type="Grid"
@@ -87,6 +86,7 @@ const mapStateToProps = (state) => ({
   email: state.auth.user.email,
   posts: state.post.posts,
   loading: state.post.isLoading,
+  loadingAuth: state.auth.isLoading
 })
 
 const mapDispatchToProps = dispatch => ({

@@ -11,7 +11,7 @@ const initState = {
     email: ''
   },
   error: '',
-  isLoading: false,
+  isLoading: true,
 }
 
 const authReducer = (state = initState, action) => {
@@ -30,7 +30,8 @@ const authReducer = (state = initState, action) => {
         user: {
           email: action.email
         },
-        error: ''
+        error: '',
+        isLoading: false,
       }
     case LOGOUT_SUCCESS: 
       return {
@@ -38,7 +39,8 @@ const authReducer = (state = initState, action) => {
         user: {
           email: ''
         },
-        error: ''
+        error: '',
+        isLoading: false,
       }
     default:
       return state
