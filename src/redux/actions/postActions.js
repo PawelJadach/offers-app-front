@@ -29,7 +29,7 @@ export const addPost = (post) => {
   return  (dispatch) => {
     dispatch({type: ADD_START});
     Axios
-    .post(`${API_URL}/posts`, { post })
+    .post(`${API_URL}/posts`, post)
     .then(res => {
       dispatch({type: ADD_SUCCESS, post: res.data.newPost});
     })

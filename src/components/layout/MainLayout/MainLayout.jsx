@@ -12,6 +12,7 @@ import { connect } from 'react-redux'
 import { loadingPosts } from '../../../redux/actions/postActions';
 import styles from './MainLayout.module.scss';
 import Loader from 'react-loader-spinner'
+import Alert from '../../common/Alert/Alert';
 
 class MainLayout extends React.Component {
   
@@ -36,6 +37,7 @@ class MainLayout extends React.Component {
       <div>
         <HashRouter>
           <Navbar />
+          <Alert />
           <Switch>
             <Route exact path={process.env.PUBLIC_URL + '/'} component={PostList} />
             <PrivateRoute email={email} exact path={process.env.PUBLIC_URL + '/addOffer'} component={PostAdd} />

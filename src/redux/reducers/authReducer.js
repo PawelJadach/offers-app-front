@@ -1,4 +1,9 @@
-import { LOGIN_SUCCESS, LOGOUT_SUCCESS, GET_FROM_STORAGE, LOGIN_START, LOGOUT_START } from '../constants/actionTypes.js';
+import { 
+  LOGIN_SUCCESS,
+  LOGOUT_SUCCESS, 
+  // GET_FROM_STORAGE, 
+  LOGIN_START, 
+  LOGOUT_START } from '../constants/actionTypes.js';
 
 const initState = {
   user: {
@@ -10,7 +15,8 @@ const initState = {
 
 const authReducer = (state = initState, action) => {
   switch (action.type) {
-    case LOGIN_START, LOGOUT_START:
+    case LOGIN_START: 
+    case LOGOUT_START:
       return {
         ...state,
         isLoading: true,

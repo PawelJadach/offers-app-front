@@ -1,7 +1,11 @@
 // import Axios from 'axios';
 import {
-  LOGIN_SUCCESS, LOGIN_ERROR, LOGIN_START,
-  LOGOUT_SUCCESS, LOGOUT_ERROR, LOGOUT_START,
+  LOGIN_SUCCESS, 
+  // LOGIN_ERROR, 
+  LOGIN_START,
+  LOGOUT_SUCCESS, 
+  // LOGOUT_ERROR, 
+  LOGOUT_START,
 } from '../constants/actionTypes';
 
 

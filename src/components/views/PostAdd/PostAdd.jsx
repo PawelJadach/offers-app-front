@@ -3,6 +3,7 @@ import styles from './PostAdd.module.scss';
 import { addPost } from '../../../redux/actions/postActions';
 import { connect }  from 'react-redux';
 import Loader from 'react-loader-spinner'
+// import { Redirect } from 'react-router';
 
 class PostAdd extends React.Component {
   state = {
@@ -51,6 +52,19 @@ class PostAdd extends React.Component {
     this.checkPhone();
     if(titleError === '' && photoError === '' && textError === '' && priceError === '' && phoneError === ''){
       this.props.addPost({ photo, text, price, title, author: this.props.email, phone });
+      this.setState({
+        title: '',
+        price: 0,
+        photo: '',
+        phone: '',
+        text: '',
+        titleError: '',
+        priceError: '',
+        phoneError: '',
+        photoError: '',
+        textError: '',
+        addedSuccess: 'Dodany!',
+      })
     }
   }
 
@@ -200,7 +214,7 @@ class PostAdd extends React.Component {
           <div className={styles.input}>
             <input autoComplete="off" type="text" id='photo' className={photoError ? styles.danger : null} name='photo' placeholder='Wprowadź link do zdjęcia ...' value={photo} onChange={this.handleChange} required/>
               <label htmlFor="photo">Zdjęcie</label>
-              { photo && photoError === '' ? <div className={styles.photo}><photo onError={this.badPhoto} src={photo} alt='Preview'/></div> : null}
+              { photo && photoError === '' ? <div className={styles.img}><img onError={this.badPhoto} src={photo} alt='Preview'/></div> : null}
               {photoError !== '' ? <div className={styles.error}>{photoError}</div> : null}
           </div>
           <div className={styles.input}>
