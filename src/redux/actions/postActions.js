@@ -6,6 +6,7 @@ import {
   // DELETE_SUCCESS, DELETE_START, DELETE_ERROR,
 } from '../constants/actionTypes';
 import { API_URL } from '../../constants/constants';
+import { setAlert } from './alertActions';
 
 
 export const loadingPosts  = () => {
@@ -29,10 +30,13 @@ export const addPost = (post) => {
     Axios
     .post(`${API_URL}/posts`, post)
     .then(res => {
+      console.log(res);
       dispatch({type: ADD_SUCCESS, post: res.data.newPost});
+      dispatch(setAlert('Post dodany!', 'success'))
     })
     .catch(err => {
       dispatch({type: ADD_ERROR, error: err});
+      dispatch(setAlert('Nie udało się dodać posta!', 'warning'))
     });
 
   }
@@ -40,9 +44,10 @@ export const addPost = (post) => {
 
 export const editOffer = (newOffer) => {
   return  (dispatch) => {
-    dispatch({type: 'EDIT_START'});
-    dispatch({type: 'EDIT_OFFER', newOffer: newOffer});
-    setTimeout(() => dispatch({type: 'EDIT_SUCCESS'}), 2000);
+    // dispatch({type: 'EDIT_START'});
+    // dispatch({type: 'EDIT_OFFER', newOffer: newOffer});
+    // setTimeout(() => dispatch({type: 'EDIT_SUCCESS'}), 2000);
+    dispatch(setAlert('Edytowanie ofert jest na razie wyłączone!', 'warning'))
   }
 }
 

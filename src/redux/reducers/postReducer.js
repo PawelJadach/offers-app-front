@@ -48,18 +48,21 @@ const postReducer = (state = initState, action) => {
       const { title, price, photo, text, author, phone, status, _id, created, updated } = action.post;
       return {
         ...state,
-        posts: state.posts.concat({
-          id: _id,
-          title,
-          price: Number(price),
-          photo,
-          text,
-          author,
-          created,
-          updated,
-          phone,
-          status,
-        }),
+        posts: [
+          {
+            id: _id,
+            title,
+            price: Number(price),
+            photo,
+            text,
+            author,
+            created,
+            updated,
+            phone,
+            status,
+          },
+          ...state.posts
+        ],
         isLoading: false,
         error: '',
     }

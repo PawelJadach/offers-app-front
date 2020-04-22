@@ -5,6 +5,7 @@ import Hamburger from '../../common/Hamburger/Hamburger';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { logoutUser } from '../../../redux/actions/authActions';
+import {withRouter} from 'react-router-dom';
 
 class Navbar extends Component {
 
@@ -22,7 +23,10 @@ class Navbar extends Component {
     this.setState({
       menu: false,
     })
-    if(e.target.value === 0) this.props.logoutUser();
+    if(e.target.value === 0) {
+      this.props.logoutUser();
+      this.props.history.push('/login');
+    }
   }
 
   
@@ -83,4 +87,4 @@ const mapDispatchToProps = dispatch => ({
   logoutUser: () => dispatch(logoutUser())
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Navbar)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Navbar))

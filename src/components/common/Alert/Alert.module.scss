@@ -6,10 +6,10 @@
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
+  z-index: 2;
 
   .alert {
     color: white;
-    z-index: 10000;
     margin-bottom: 10px;
   }
 }

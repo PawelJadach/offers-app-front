@@ -9,17 +9,12 @@ import Post from '../../views/Post/Post';
 import MyPosts from '../../views/MyPosts/MyPosts';
 import OfferEdit from '../../views/OfferEdit/OfferEdit';
 import { connect } from 'react-redux'
-import { loadingPosts } from '../../../redux/actions/postActions';
 import styles from './MainLayout.module.scss';
 import Loader from 'react-loader-spinner'
 import Alert from '../../common/Alert/Alert';
-import { getFromStorage } from '../../../redux/actions/authActions';
 
 class MainLayout extends React.Component {
   
-  componentDidMount()  {
-    this.props.loadingPosts();
-  }
   
   render(){
     
@@ -71,8 +66,6 @@ const PrivateRouteLogin = ({ email, component: Component, ...rest }) => (
 )
 
 const PrivateRouteEdit = ({ email, posts, computedMatch, component: Component, ...rest }) => {
-
-console.log(posts);
 if(email === '' || posts[posts.findIndex(post => computedMatch.params.id === post._id)].author !== email ) 
 return (
     <Route {...rest} render={(props) => ( <Redirect to='/error' /> )}/>
@@ -89,11 +82,8 @@ const mapStateToProps = (state) => ({
   loadingAuth: state.auth.isLoading
 })
 
-const mapDispatchToProps = dispatch => ({
-  loadingPosts: () => (dispatch(loadingPosts())),
-  getUserFromStorage: () => (dispatch(getFromStorage())),
-})
 
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(MainLayout)
+
+export default connect(mapStateToProps)(MainLayout)
