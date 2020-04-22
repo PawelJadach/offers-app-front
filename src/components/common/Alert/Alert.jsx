@@ -6,13 +6,18 @@ const Alert = ({ alerts }) => {
   if(alerts !== null && alerts.length > 0) {
     let alertsList;
 
-    alertsList = alerts.map(alert => {
-      return (
-        <div key={alert.id} className={`${styles.alert} ${styles.alert.alertType}}`}>
-          {alert.text}
-        </div>
-      )
-    });
+    alertsList = 
+    <div className={styles.root}>
+      {alerts.map(alert => {
+        return (
+            <div key={alert.id} className={`${styles.alert}`}>
+              <div className={alert.alertType}>
+                {alert.text}
+              </div>
+          </div>
+        )
+      })}
+    </div>
     return alertsList;
   } else return null;
 }

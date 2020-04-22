@@ -1,6 +1,17 @@
 import { SET_ALLERT, REMOVE_ALLERT } from '../constants/actionTypes';
 
-const initState = [];
+const initState = [
+  {
+    id: 1,
+    alertType: 'warning',
+    text: 'Nie udało się dodać!'
+  },
+  {
+    id: 2,
+    alertType: 'success',
+    text: 'Udało się dodać!'
+  }
+];
 
 const alertReducer = ( state = initState, action) => {
   switch(action.type){
