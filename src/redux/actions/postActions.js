@@ -11,7 +11,6 @@ import { API_URL } from '../../constants/constants';
 export const loadingPosts  = () => {
   return  (dispatch, getState) => {
     if(getState().post.posts.length === 0 && getState().post.isLoading === false){
-      console.log('loading start')
     dispatch({type: LOADING_START});
     Axios
     .get(`${API_URL}/posts`)
@@ -19,7 +18,6 @@ export const loadingPosts  = () => {
       dispatch({type: LOADING_SUCCESS, posts: res.data})
     })
     .catch(err => {
-      console.log(err)
       dispatch({type: LOADING_ERROR, error: err})
     })}
   }

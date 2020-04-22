@@ -3,7 +3,8 @@ import {
   LOGOUT_SUCCESS, 
   // GET_FROM_STORAGE, 
   LOGIN_START, 
-  LOGOUT_START } from '../constants/actionTypes.js';
+  LOGOUT_START, 
+  GET_FROM_STORAGE} from '../constants/actionTypes.js';
 
 const initState = {
   user: {
@@ -23,6 +24,7 @@ const authReducer = (state = initState, action) => {
         error: ''
       }
     case LOGIN_SUCCESS: 
+    case GET_FROM_STORAGE:
       return {
         ...state,
         user: {

@@ -13,10 +13,12 @@ import { loadingPosts } from '../../../redux/actions/postActions';
 import styles from './MainLayout.module.scss';
 import Loader from 'react-loader-spinner'
 import Alert from '../../common/Alert/Alert';
+import { getFromStorage } from '../../../redux/actions/authActions';
 
 class MainLayout extends React.Component {
   
   componentDidMount() {
+    this.props.getUserFromStorage();
     this.props.loadingPosts();
   }
   
@@ -88,7 +90,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  loadingPosts: () => (dispatch(loadingPosts()))
+  loadingPosts: () => (dispatch(loadingPosts())),
+  getUserFromStorage: () => (dispatch(getFromStorage())),
 })
 
 
