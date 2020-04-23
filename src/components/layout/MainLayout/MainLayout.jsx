@@ -34,12 +34,12 @@ class MainLayout extends React.Component {
         <Navbar />
         <Alert />
         <Switch>
-          <Route exact path={process.env.PUBLIC_URL + '/'} component={PostList} />
-          <PrivateRoute email={email} exact path={process.env.PUBLIC_URL + '/addOffer'} component={PostAdd} />
-          <PrivateRoute email={email} exact path={process.env.PUBLIC_URL + '/my-posts'} component={MyPosts} />
-          <PrivateRouteLogin email={email} exact path={process.env.PUBLIC_URL + '/login'} component={LoginPage} />
-          <Route exact path={process.env.PUBLIC_URL + '/offer/:id'} component={Post} />
-          <PrivateRouteEdit email={email} posts={posts} exact path={process.env.PUBLIC_URL + '/offer/edit/:id'} component={OfferEdit} />
+          <Route exact path={'/'} component={PostList} />
+          <PrivateRoute email={email} exact path={'/addOffer'} component={PostAdd} />
+          <PrivateRoute email={email} exact path={'/my-posts'} component={MyPosts} />
+          <PrivateRouteLogin email={email} exact path={'/login'} component={LoginPage} />
+          <Route exact path={'/offer/:id'} component={Post} />
+          <PrivateRouteEdit email={email} posts={posts} exact path={'/offer/edit/:id'} component={OfferEdit} />
           <Route exact path='*'  component={ErrorPage} />
         </Switch>
       </div>

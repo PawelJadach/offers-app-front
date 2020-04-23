@@ -34,26 +34,26 @@ class Navbar extends Component {
     const navLinksLogged = [
       {
         name: 'Home',
-        link: process.env.PUBLIC_URL + '/',
+        link:'/',
       },
       {
         name: 'My Offers',
-        link: `${process.env.PUBLIC_URL}/my-posts`,
+        link: '/my-posts',
       },
       {
         name: 'Logout',
-        link: process.env.PUBLIC_URL + '/',
+        link:'/',
       },
     ];
 
     const navLinksNotLogged = [
       {
         name: 'Home',
-        link: process.env.PUBLIC_URL + '/',
+        link: '/',
       },
       {
         name: 'Login',
-        link: process.env.PUBLIC_URL + '/login',
+        link: '/login',
       },
     ];
 

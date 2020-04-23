@@ -9,7 +9,7 @@ const MyPosts = ({posts, email}) => {
   const myPosts = posts.filter(post => post.author === email);
   return (
     <div className={styles.root}>
-      <div className={styles.button}><Link to={process.env.PUBLIC_URL + '/addOffer'}><button className={styles.btn}>Add post</button></Link></div>
+      <div className={styles.button}><Link to={'/addOffer'}><button className={styles.btn}>Add post</button></Link></div>
       {myPosts.map(post => <PostListItem {...post} key={post._id}/>)}
     </div>
   )
