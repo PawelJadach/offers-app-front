@@ -8,6 +8,7 @@ import { Provider } from 'react-redux';
 import rootReducer from './redux/reducers/rootReducer';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
+import { HashRouter } from 'react-router-dom';
 
 const store = createStore(
   rootReducer,
@@ -18,7 +19,9 @@ const store = createStore(
 ReactDOM.render(
   <Provider store={store}>
     <React.StrictMode>
-      <App />
+      <HashRouter>
+        <App />
+      </HashRouter>
     </React.StrictMode>
   </Provider>,
   document.getElementById('root')
